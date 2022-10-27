@@ -25,7 +25,8 @@ class Server:
 
         ]
         self.region = config.get('WAZE','route.region')
-
+        self.avoid_toll_roads = config.get('WAZE','avoid_toll_roads')
+        self.avoid_subscription_roads = config.get('WAZE','avoid_subscription_roads')
         self.app = FastAPI(title="Wazy", description="Monitor your routes and get notified when it flows", version='1.0.0', openapi_tags=self.tags_metadata, contact={"name": "Tomer Klein", "email": "tomer.klein@gmail.com", "url": "https://github.com/t0mer/Wazy"})
 
 
@@ -66,6 +67,38 @@ class Server:
                 to_address = config.get(name,'route.end_address')
                 avoid_toll_roads = config.get(name,'route.avoid_toll_roads')
                 avoid_subscription_roads = config.get(name,'route.avoid_subscription_roads')
+                route = WazeRouteCalculator.WazeRouteCalculator(from_address, to_address, region=self.region,avoid_toll_roads=avoid_toll_roads,avoid_subscription_roads=avoid_subscription_roads)
+                route_time, route_distance = route.calc_route_info()
+                route_time_seconds = (int(route_time)*60)
+                message = '{"time":"' + str(self.convert_to_preferred_format(route_time_seconds)) + '","distance":"' + str(route_distance) + ' km","nav_url":"' + self.create_nav_url(route.end_coords['lat'],route.end_coords['lon']) +'"}'
+                return JSONResponse(content = json.loads(message)) 
+            except Exception as e:
+                logger.error(str(e))
+                return JSONResponse(content = '{"message":"' +str(e)+ '","success":false}')
+
+        @self.app.get('/route/default',tags=['Routes'], summary="Get default route")
+        def get_default_route():
+            try:
+                from_address = config.get('WAZE','route.start_address')
+                to_address = config.get('WAZE','route.end_address')
+                avoid_toll_roads = config.get('WAZE','route.avoid_toll_roads')
+                avoid_subscription_roads = config.get('WAZE','route.avoid_subscription_roads')
+                route = WazeRouteCalculator.WazeRouteCalculator(from_address, to_address, region=self.region,avoid_toll_roads=avoid_toll_roads,avoid_subscription_roads=avoid_subscription_roads)
+                route_time, route_distance = route.calc_route_info()
+                route_time_seconds = (int(route_time)*60)
+                message = '{"time":"' + str(self.convert_to_preferred_format(route_time_seconds)) + '","distance":"' + str(route_distance) + ' km","nav_url":"' + self.create_nav_url(route.end_coords['lat'],route.end_coords['lon']) +'"}'
+                return JSONResponse(content = json.loads(message)) 
+            except Exception as e:
+                logger.error(str(e))
+                return JSONResponse(content = '{"message":"' +str(e)+ '","success":false}')
+
+        @self.app.get('/route/locations',tags=['Routes'], summary="Get route by location name name")
+        def get_route_by_name(start: str, end: str):
+            try:
+                from_address = config.get("ADRESSES",'address.' + start)
+                to_address = config.get("ADRESSES",'address.' + end)
+                avoid_toll_roads = self.avoid_toll_roads
+                avoid_subscription_roads = self.avoid_subscription_roads
                 route = WazeRouteCalculator.WazeRouteCalculator(from_address, to_address, region=self.region,avoid_toll_roads=avoid_toll_roads,avoid_subscription_roads=avoid_subscription_roads)
                 route_time, route_distance = route.calc_route_info()
                 route_time_seconds = (int(route_time)*60)
