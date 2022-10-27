@@ -25,8 +25,8 @@ class Server:
 
         ]
         self.region = config.get('WAZE','route.region')
-        self.avoid_toll_roads = config.get('WAZE','avoid_toll_roads')
-        self.avoid_subscription_roads = config.get('WAZE','avoid_subscription_roads')
+        self.avoid_toll_roads = config.get('WAZE','route.avoid_toll_roads')
+        self.avoid_subscription_roads = config.get('WAZE','route.avoid_subscription_roads')
         self.app = FastAPI(title="Wazy", description="Monitor your routes and get notified when it flows", version='1.0.0', openapi_tags=self.tags_metadata, contact={"name": "Tomer Klein", "email": "tomer.klein@gmail.com", "url": "https://github.com/t0mer/Wazy"})
 
 
