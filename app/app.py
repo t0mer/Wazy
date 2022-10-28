@@ -1,20 +1,20 @@
 import WazeRouteCalculator
 from server import Server
+from bothandler import BotHandler
 from confighandler import ConfigHandler
 from loguru import logger
 import io
+import os
 
-config = ConfigHandler().config
-server = Server(config)
+os.environ['PYTHONIOENCODING'] = 'utf-8'
+os.environ['LANG'] = 'C.UTF-8'
 
-# from_address = "הגליל 48 רעננה, ישראל"
-# to_address = "המלאכה 18 נתניה, ישראל"
-# region = 'IL'
-# route = WazeRouteCalculator.WazeRouteCalculator(from_address, to_address, region)
-# route_time, route_distance = route.calc_route_info()
-# logger.info('Time %.2f minutes, distance %.2f km.' % (route_time, route_distance))
-# logger.info(str(route.end_coords['lat']) + "," + str(route.end_coords['lon']))
-# logger.info(str(route.start_coords['lat']) + "," + str(route.end_coords['lon']))
 
+server = Server()
+bot = BotHandler()
+# bot.start()
+
+# conig = ConfigHandler().config
+# logger.info(conig.sections())
 
 server.start()
