@@ -8,13 +8,13 @@ import os
 
 os.environ['PYTHONIOENCODING'] = 'utf-8'
 os.environ['LANG'] = 'C.UTF-8'
+config = ConfigHandler().config
 
 
-server = Server()
-bot = BotHandler()
-# bot.start()
+if bool(config.get('Telegram','bot.enabled')):
+    bot = BotHandler()
+    bot.start()
 
-# conig = ConfigHandler().config
-# logger.info(conig.sections())
 
-server.start()
+# server = Server()
+# server.start()

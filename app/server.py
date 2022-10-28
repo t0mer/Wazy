@@ -64,13 +64,7 @@ class Server:
         @self.app.get('/route/byname',tags=['Routes'], summary="Get route by name")
         def get_route_by_name(name: str):
             try:
-                from_address = self.config.get(name,'route.start_address')
-                to_address = self.config.get(name,'route.end_address')
-                avoid_toll_roads = self.config.get(name,'route.avoid_toll_roads')
-                avoid_subscription_roads = self.config.get(name,'route.avoid_subscription_roads')
-                
-                time_in_minutes,route_time,distance,nav_url = self.calculator.get_route(from_address=from_address,to_address=to_address,
-                avoid_subscription_roads=avoid_subscription_roads,avoid_toll_roads=avoid_toll_roads,region=self.region)
+                time_in_minutes,route_time,distance,nav_url = self.calculator.get_route_info_by_name(name=name)
                 message = '{"time":"' + route_time + '","time_in_minutes":"' + str(time_in_minutes) +'","distance":"' + str(distance) + ' km","nav_url":"' + nav_url +'"}'
                 return JSONResponse(content = json.loads(message)) 
             except Exception as e:
