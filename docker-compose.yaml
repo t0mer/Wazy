@@ -1,0 +1,15 @@
+version: "3.6"
+services:
+  wazy:
+    image: techblog/wazy
+    container_name: wazy
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - API_KEY=
+      - SLEEP_TIME=
+      - NOTIFIERS=
+      - LOG_LEVEL=DEBUG
+    volumes:
+      - ./wazy:/app/config
