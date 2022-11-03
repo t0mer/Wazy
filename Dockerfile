@@ -23,4 +23,4 @@ COPY app /app
 
 WORKDIR /app
 
-ENTRYPOINT ["/usr/bin/python3", "/app/voicy.py"]
+ENTRYPOINT ["/usr/bin/python3", "/app/app.py"]
