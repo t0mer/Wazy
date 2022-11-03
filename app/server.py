@@ -1,19 +1,12 @@
-from routecalculator import RouteCalculator
-from fastapi import FastAPI, Request, File, Form, UploadFile, HTTPException
-from fastapi.responses import UJSONResponse
-from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse
-from starlette.responses import FileResponse
-from starlette.responses import StreamingResponse
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.encoders import jsonable_encoder
-from loguru import logger
-from confighandler import ConfigHandler
-import uvicorn
+import os
+import sys
 import json
-
+import uvicorn
+from loguru import logger
+from fastapi import FastAPI
+from confighandler import ConfigHandler
+from fastapi.responses import JSONResponse
+from routecalculator import RouteCalculator
 
 
 class Server:
