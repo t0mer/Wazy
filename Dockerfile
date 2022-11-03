@@ -19,8 +19,8 @@ COPY requirements.txt /tmp
 
 RUN pip3 install -r /tmp/requirements.txt
 
-COPY app /opt/app
+COPY app /app
 
-WORKDIR /opt/app
+WORKDIR /app
 
-ENTRYPOINT python3 app.py
+ENTRYPOINT ["/usr/bin/python3", "/app/voicy.py"]

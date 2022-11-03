@@ -7,9 +7,6 @@ services:
     ports:
       - 8081:8081
     environment:
-      - API_KEY=
-      - SLEEP_TIME=
-      - NOTIFIERS=
       - LOG_LEVEL=DEBUG
     volumes:
       - ./wazy:/app/config
