@@ -15,6 +15,10 @@ RUN apt install -yqq python3-pip && \
 
 RUN mkdir -p /app/config
 
+COPY requirements.txt /tmp
+
+RUN pip3 install -r /tmp/requirements.txt
+
 COPY app /opt/app
 
 WORKDIR /opt/app
