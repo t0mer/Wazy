@@ -125,5 +125,22 @@ address.school=
 ### Sections:
 * Telegram:
     * bot.token: Bot token generated in installation section.
+    * bot.welcome.message: Bot welcome message when clicking the start command.
+    * bot.enabled: Enables or Disables the bot. default is set to disabled.
+
+* Waze:
+    * route.avoid_toll_roads: When true, the waze route calculator will avoid toll roads.
+    * route.avoid_subscription_roads: same as above but for subscription roads.
+    * route.start_address & route.end_address: setting the default toute to check.
+    * routes: List of routes that can be monitored.
+    * address: List of addresses that can be set as start and end for routes.
+
+* work2home and home2work - example of pre-configured routes:
+* ADDRESSES: Pre-configured addresses that can be set as route start and end points.
+
+## Rest API
+As I mentioned, working with Wazy is also possible using the Rest API. API documentation can be found by adding /docs to the server address. For example http://wazy:8081/docs.
+
+[![Wazy rest API](https://github.com/t0mer/Wazy/blob/main/screenshots/wazy.png?raw=true "Wazy rest API")](https://github.com/t0mer/Wazy/blob/main/screenshots/wazy.png?raw=true "Wazy rest API")
 
 
