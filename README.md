@@ -145,3 +145,10 @@ As I mentioned, working with Wazy is also possible using the Rest API. API docum
 [![Wazy rest API](https://github.com/t0mer/Wazy/blob/main/screenshots/wazy.png?raw=true "Wazy rest API")](https://github.com/t0mer/Wazy/blob/main/screenshots/wazy.png?raw=true "Wazy rest API")
 
 
+* "/route/get": Get travel time for route between addtesses:
+    * from_address: can be any addres, like "Raanana, Israel"
+    * to_address: can be any address, like "Tel aviv, Israel"
+
+* "/route/default": Get travel time for default route that was configured in the config.ini file.
+* "/route/byname" : Get travel time for route by it's name.
+* "/route/locations": Get travel time between to addresses taken the configuration file ander [ADDRESSES] section. 
