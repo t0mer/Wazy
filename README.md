@@ -14,7 +14,7 @@ https://user-images.githubusercontent.com/4478920/200173402-8a8343c3-afc2-4341-8
 - Rest API to integrate with other applications/systems.
 
 
-## Components and Frameworks used in Certi
+## Components and Frameworks used in Wazy
 * [Loguru](https://pypi.org/project/loguru/) For logging.
 * [FastAPI](https://github.com/tiangolo/fastapi) For REST API.
 * [WazeRouteCalculator](https://github.com/kovacsbalu/WazeRouteCalculator) For interacting with Waze.
