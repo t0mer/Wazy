@@ -4,6 +4,7 @@ import json
 import uvicorn
 from loguru import logger
 from fastapi import FastAPI
+from fastapi import status
 from confighandler import ConfigHandler
 from fastapi.responses import JSONResponse
 from routecalculator import RouteCalculator
@@ -32,10 +33,10 @@ class Server:
                 time_in_minutes,route_time,distance,nav_url = self.calculator.get_route(from_address=from_address,to_address=to_address,
                 avoid_subscription_roads=avoid_subscription_roads,avoid_toll_roads=avoid_toll_roads,region=self.region)
                 message = '{"time":"' + route_time + '","time_in_minutes":"' + str(time_in_minutes) +'","distance":"' + str(distance) + ' km","nav_url":"' + nav_url +'"}'
-                return JSONResponse(content = json.loads(message)) 
+                return JSONResponse(status_code=200,content = json.loads(message)) 
             except Exception as e:
                 logger.error(str(e))
-                return JSONResponse(content = '{"error":"' +str(e)+ '","success":false}')
+                return JSONResponse(status_code=500,content = '{"error":"' +str(e)+ '","success":false}')
 
 
         @self.app.get('/route/default',tags=['Routes'], summary="Get default route")
@@ -52,7 +53,7 @@ class Server:
                 return JSONResponse(content = json.loads(message)) 
             except Exception as e:
                 logger.error(str(e))
-                return JSONResponse(content = '{"message":"' +str(e)+ '","success":false}')
+                return JSONResponse(status_code=500,content = '{"message":"' +str(e)+ '","success":false}')
 
         @self.app.get('/route/byname',tags=['Routes'], summary="Get route by name")
         def get_route_by_name(name: str):
@@ -62,7 +63,7 @@ class Server:
                 return JSONResponse(content = json.loads(message)) 
             except Exception as e:
                 logger.error(str(e))
-                return JSONResponse(content = '{"message":"' +str(e)+ '","success":false}')
+                return JSONResponse(status_code=500,content = '{"message":"' +str(e)+ '","success":false}')
 
         
 
@@ -79,7 +80,7 @@ class Server:
                 return JSONResponse(content = json.loads(message)) 
             except Exception as e:
                 logger.error(str(e))
-                return JSONResponse(content = '{"message":"' +str(e)+ '","success":false}')
+                return JSONResponse(status_code=500,content = '{"message":"' +str(e)+ '","success":false}')
 
 
     def start(self):
