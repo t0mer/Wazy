@@ -56,7 +56,7 @@ After you choose a suitable name for your bot — the bot is created. You will r
 
 ### Docker
 
-Certi is a docker based application that can be installed using docker compose:
+Wazy is a docker based application that can be installed using docker compose:
 ```
 version: "3.6"
 services:
