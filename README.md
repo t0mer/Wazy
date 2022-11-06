@@ -1,13 +1,10 @@
 # Wazy
 Wazy is a bot based on Telegram bot that allows checking travel times using Waze.
 
+https://user-images.githubusercontent.com/4478920/200173402-8a8343c3-afc2-4341-86ea-c833bed98a9a.mp4
 
 ## Features
 - Check current route travel time.
-
-https://user-images.githubusercontent.com/4478920/200173402-8a8343c3-afc2-4341-86ea-c833bed98a9a.mp4
-
-
 - Set interval for route travel time checks.
 - Get waze navigation url that opens in the application.
 - Set maximum travel time and get warning is the travel time exceeds the maximum.
