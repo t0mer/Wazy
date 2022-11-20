@@ -71,7 +71,7 @@ class BotHandler:
                     time.sleep(1)
 
 # -------------- Handle cancel command ---------------- #
-        @self.bot.callback_query_handler(lambda c: c.data == "Cancle")
+        @self.bot.callback_query_handler(lambda c: c.data == "Cancel")
         def intervals_clear_callback(call: types.CallbackQuery):
             logger.info("Canceling scheduled route monitoring")
             self.run_scheduled_jobd=False
@@ -147,7 +147,7 @@ class BotHandler:
                 text=str(interval) + " Minutes",
                 callback_data="_{}:{}".format(route,interval)))
         markup.add(types.InlineKeyboardButton(
-            text="Cancle",
+            text="Cancel",
             callback_data="Back"))
         return markup
 
@@ -168,8 +168,8 @@ class BotHandler:
         markup = types.InlineKeyboardMarkup()
         markup.row_width=3
         markup.add(types.InlineKeyboardButton(
-            text="Cancle route monitor",
-            callback_data="Cancle"))
+            text="Cancel route monitor",
+            callback_data="Cancel"))
         return markup
 
 
